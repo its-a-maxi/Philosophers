@@ -6,7 +6,7 @@
 /*   By: mmonroy- <mmonroy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 12:15:25 by mmonroy-          #+#    #+#             */
-/*   Updated: 2021/02/09 14:02:18 by mmonroy-         ###   ########.fr       */
+/*   Updated: 2021/02/10 12:13:56 by mmonroy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,29 @@ typedef struct          s_arg
 }                       t_arg;
 
 t_arg                   g_arg;
-pthread_mutex_t         *m_forks;
-pthread_mutex_t         m_stdout;
-pthread_mutex_t         m_start;
+char                    *g_forks;
+unsigned long           g_queue;
+pthread_mutex_t         gm_waiter;
+pthread_mutex_t         gm_stdout;
+pthread_mutex_t         gm_meals;
 
-/* philo_one_utils.c */
+/*
+**  philo_one_utils.c 
+*/
 unsigned long           ft_atoul(char *str);
 char                    *ft_ultoa(unsigned long n);
 void                    ft_print_change(unsigned long time,
                         unsigned long id, char *str);
 
-/* philo_one_main.c */
-unsigned long           ft_get_timestamp(struct timeval *t,
+/*
+**  philo_one_main.c
+*/
+unsigned long           ft_get_time(struct timeval *t,
                         struct timeval *u);
 
-/* philo_one_subroutines.c */
+/*
+**  philo_one_subroutines.c
+*/
 void                    ft_new_philosopher(void *philo_id);
 
 
