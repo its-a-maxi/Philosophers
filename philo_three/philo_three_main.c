@@ -6,33 +6,33 @@
 /*   By: mmonroy- <mmonroy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 13:55:31 by mmonroy-          #+#    #+#             */
-/*   Updated: 2021/02/16 11:59:06 by mmonroy-         ###   ########.fr       */
+/*   Updated: 2021/02/16 13:09:30 by mmonroy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
-static int      ft_set_args(int argc, char **argv)
+static int		ft_set_args(int argc, char **argv)
 {
-    g_arg.num_phi = ft_atoul(argv[1]);
-    if (g_arg.num_phi == 1)
-        return (1);
-    g_arg.time_die = ft_atoul(argv[2]);
+	g_arg.num_phi = ft_atoul(argv[1]);
+	if (g_arg.num_phi == 1)
+		return (1);
+	g_arg.time_die = ft_atoul(argv[2]);
 	g_arg.time_eat = ft_atoul(argv[3]);
 	g_arg.time_sleep = ft_atoul(argv[4]);
-    if (argc == 6)
-    {
-        g_arg.num_eat = ft_atoul(argv[5]);
-        return (!(g_arg.num_phi) || !(g_arg.time_die)
-            || !(g_arg.time_eat) || !(g_arg.time_sleep)
-            || !(g_arg.num_eat));
-    }
-    else
-    {
-        g_arg.num_eat = 0;
-        return (!(g_arg.num_phi) || !(g_arg.time_die)
-            || !(g_arg.time_eat) || !(g_arg.time_sleep));
-    }
+	if (argc == 6)
+	{
+		g_arg.num_eat = ft_atoul(argv[5]);
+		return (!(g_arg.num_phi) || !(g_arg.time_die)
+				|| !(g_arg.time_eat) || !(g_arg.time_sleep)
+				|| !(g_arg.num_eat));
+	}
+	else
+	{
+		g_arg.num_eat = 0;
+		return (!(g_arg.num_phi) || !(g_arg.time_die)
+				|| !(g_arg.time_eat) || !(g_arg.time_sleep));
+	}
 }
 
 static int		ft_set_data(t_sem *data)
@@ -63,6 +63,7 @@ static int		ft_set_data(t_sem *data)
 		return (1);
 	return (0);
 }
+
 static void		ft_birth_child(t_sem *data)
 {
 	unsigned long	i;
@@ -101,28 +102,28 @@ static void		ft_destroy_sem(t_sem *data)
 	}
 }
 
-int             main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
-    t_sem           data;
-    int             pid;
-    unsigned long   i;
+	t_sem			data;
+	int				pid;
+	unsigned long	i;
 
-    if (((argc != 5) && (argc != 6))
-        || (ft_set_args(argc, argv))
-		|| (ft_set_data(&data)))
+	if (((argc != 5) && (argc != 6))
+			|| (ft_set_args(argc, argv))
+			|| (ft_set_data(&data)))
 		return (1);
-    ft_birth_child(&data);
-    if (argc == 6)
-        if (!(pid = fork()))
-            ft_satiated(&data);
-    sem_wait(data.s_dead);
-    if (argc == 6)
-        kill(pid, SIGKILL);
-    i = 0;
-    while (i < g_arg.num_phi)
-        kill(data.pid[i++], SIGKILL);
-    free(data.pid);
-    ft_destroy_sem(&data);
-    free(data.s_meals);
-    return (0);
+	ft_birth_child(&data);
+	if (argc == 6)
+		if (!(pid = fork()))
+			ft_satiated(&data);
+	sem_wait(data.s_dead);
+	if (argc == 6)
+		kill(pid, SIGKILL);
+	i = 0;
+	while (i < g_arg.num_phi)
+		kill(data.pid[i++], SIGKILL);
+	free(data.pid);
+	ft_destroy_sem(&data);
+	free(data.s_meals);
+	return (0);
 }
