@@ -6,7 +6,7 @@
 /*   By: mmonroy- <mmonroy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 12:36:40 by mmonroy-          #+#    #+#             */
-/*   Updated: 2021/02/16 12:23:43 by mmonroy-         ###   ########.fr       */
+/*   Updated: 2021/02/16 12:36:05 by mmonroy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,13 @@ void			ft_print_change(unsigned long time, unsigned long id, char *str)
 		return ;
 	time_str = ft_ultoa(time);
 	id_str = ft_ultoa(id + 1);
-	pthread_mutex_lock(&gm_stdout);
+	pthread_mutex_lock(&g_m_stdout);
 	write(1, time_str, ft_strlen(time_str));
 	write(1, " ", 1);
 	write(1, id_str, ft_strlen(id_str));
 	write(1, " ", 1);
 	write(1, str, ft_strlen(str));
-	pthread_mutex_unlock(&gm_stdout);
+	pthread_mutex_unlock(&g_m_stdout);
 	free(time_str);
 	free(id_str);
 }

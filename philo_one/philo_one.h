@@ -6,7 +6,7 @@
 /*   By: mmonroy- <mmonroy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 12:15:25 by mmonroy-          #+#    #+#             */
-/*   Updated: 2021/02/16 12:30:43 by mmonroy-         ###   ########.fr       */
+/*   Updated: 2021/02/16 12:36:04 by mmonroy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ typedef struct			s_arg
 t_arg					g_arg;
 char					*g_forks;
 unsigned long			g_queue;
-pthread_mutex_t			gm_waiter;
-pthread_mutex_t			gm_stdout;
-pthread_mutex_t			gm_meals;
+pthread_mutex_t			g_m_waiter;
+pthread_mutex_t			g_m_stdout;
+pthread_mutex_t			g_m_meals;
 
 /*
 **  philo_one_utils.c

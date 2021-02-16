@@ -6,7 +6,7 @@
 /*   By: mmonroy- <mmonroy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 11:23:16 by mmonroy-          #+#    #+#             */
-/*   Updated: 2021/02/16 12:26:59 by mmonroy-         ###   ########.fr       */
+/*   Updated: 2021/02/16 12:36:05 by mmonroy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int			ft_get_fork(unsigned long id,
 
 	left = (id != 0) ? id - 1 : g_arg.num_phi - 1;
 	gettimeofday(time + 2, 0);
-	pthread_mutex_lock(&gm_waiter);
+	pthread_mutex_lock(&g_m_waiter);
 	if (ft_can_eat(id, left))
 	{
 		if (g_queue == id)
@@ -37,7 +37,7 @@ static int			ft_get_fork(unsigned long id,
 		ft_print_change(ft_get_time(time, time + 2), id, "has taken a fork\n");
 		g_forks[left] = 0;
 		ft_print_change(ft_get_time(time, time + 2), id, "has taken a fork\n");
-		pthread_mutex_unlock(&gm_waiter);
+		pthread_mutex_unlock(&g_m_waiter);
 		return (1);
 	}
 	else if ((((g_forks[id]) && !g_forks[left]) ||
@@ -45,7 +45,7 @@ static int			ft_get_fork(unsigned long id,
 			&& ft_get_time(time + 1, time + 2) > g_arg.time_eat +
 			(*meals > 0) * g_arg.time_sleep)
 		g_queue = id;
-	pthread_mutex_unlock(&gm_waiter);
+	pthread_mutex_unlock(&g_m_waiter);
 	return (0);
 }
 
@@ -74,16 +74,16 @@ static void			ft_philosophize(unsigned long id,
 	gettimeofday(time + 1, 0);
 	ft_print_change(ft_get_time(time, time + 1), id, "is eating\n");
 	ft_usleep(time, g_arg.time_eat);
-	pthread_mutex_lock(&gm_waiter);
+	pthread_mutex_lock(&g_m_waiter);
 	g_forks[id] = 1;
 	g_forks[left] = 1;
-	pthread_mutex_unlock(&gm_waiter);
+	pthread_mutex_unlock(&g_m_waiter);
 	(*meals)++;
 	if ((g_arg.num_eat) && (*meals == g_arg.num_eat))
 	{
-		pthread_mutex_lock(&gm_meals);
+		pthread_mutex_lock(&g_m_meals);
 		g_arg.num_satiated++;
-		pthread_mutex_unlock(&gm_meals);
+		pthread_mutex_unlock(&g_m_meals);
 	}
 	gettimeofday(time + 2, 0);
 	ft_print_change(ft_get_time(time, time + 2), id, "is sleeping\n");

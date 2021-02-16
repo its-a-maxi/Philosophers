@@ -6,7 +6,7 @@
 /*   By: mmonroy- <mmonroy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 13:55:31 by mmonroy-          #+#    #+#             */
-/*   Updated: 2021/02/16 12:22:04 by mmonroy-         ###   ########.fr       */
+/*   Updated: 2021/02/16 12:36:06 by mmonroy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ static int		ft_create_threads(pthread_t *phi_threads, unsigned long *phi_id)
 
 static void		ft_cleaner(unsigned long **id, pthread_t **phi_threads)
 {
-	pthread_mutex_destroy(&gm_waiter);
-	pthread_mutex_destroy(&gm_stdout);
-	pthread_mutex_destroy(&gm_meals);
+	pthread_mutex_destroy(&g_m_waiter);
+	pthread_mutex_destroy(&g_m_stdout);
+	pthread_mutex_destroy(&g_m_meals);
 	free(g_forks);
 	free(*phi_threads);
 	free(*id);
@@ -78,9 +78,9 @@ int				main(int argc, char **argv)
 			|| !(memset(g_forks, 1, sizeof(char) * g_arg.num_phi))
 			|| !(phi_threads = malloc(sizeof(pthread_t) * g_arg.num_phi))
 			|| !(phi_id = malloc(sizeof(unsigned long) * g_arg.num_phi))
-			|| (pthread_mutex_init(&gm_meals, NULL))
-			|| (pthread_mutex_init(&gm_waiter, NULL))
-			|| (pthread_mutex_init(&gm_stdout, NULL))
+			|| (pthread_mutex_init(&g_m_meals, NULL))
+			|| (pthread_mutex_init(&g_m_waiter, NULL))
+			|| (pthread_mutex_init(&g_m_stdout, NULL))
 			|| (ft_create_threads(phi_threads, phi_id)))
 		return (1);
 	i = -1;
