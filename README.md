@@ -40,6 +40,7 @@ to each other, that is, they do not know whether another philosopher is either t
 ### Installation
 
 * Clone the repo
+
   ```sh
   git clone https://github.com/its-a-maxi/Philosophers.git
   ```
