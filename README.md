@@ -16,6 +16,7 @@
 ## ℹ️ About The Project
 
 _42 Project_
+
 "The challenge in the dining philosophers problem is to design a protocol so that the philosophers do not deadlock
 (i.e. the entire set of philosophers does not stop and wait indefinitely), and so that no philosopher starves
 (i.e. every philosopher eventually gets his/her hands on a pair of chopsticks)." Without allowing them to talk
