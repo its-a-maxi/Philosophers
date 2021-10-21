@@ -41,7 +41,7 @@ to each other, that is, they do not know whether another philosopher is either t
 
 * Clone the repo
   ```sh
-  git clone https://github.com/its-a-maxi/ft_containers.git
+  git clone https://github.com/its-a-maxi/Philosophers.git
   ```
   
 <p align="right">(<a href="#top">back to top</a>)</p>
