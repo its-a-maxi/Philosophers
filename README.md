@@ -59,7 +59,7 @@ to each other, that is, they do not know whether another philosopher is either t
 
 * Run the executable
 ```sh
-  ./_<executable> <number_of_philosophers> <time_to_die> <time_to_eat> <time_to_sleep> <[number_of_times_each_philosopher_must_eat]>_
+  ./<executable> <number_of_philosophers> <time_to_die> <time_to_eat> <time_to_sleep> <[number_of_times_each_philosopher_must_eat]>
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
